@@ -15,11 +15,13 @@ export default class Progress extends Component {
     style: PropTypes.object,
     className: PropTypes.string,
     symbolClassName: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    ariaLabel: PropTypes.string
   }
 
   static defaultProps = {
-    percent: 0
+    percent: 0,
+    ariaLabel: 'A bounded progress bar from 0 to 100'
   }
 
   constructor(props) {
@@ -44,7 +46,7 @@ export default class Progress extends Component {
   render() {
     const {
       percent, status, theme, style, className, symbolClassName, type,
-      width, strokeWidth
+      width, strokeWidth, ariaLabel
     } = this.props;
     let progressStatus = null;
 
@@ -77,7 +79,14 @@ export default class Progress extends Component {
       const gapDeg = 0;
 
       return (
-        <div className={`${prefixClass}-circle-outer`} style={circleStyle}>
+        <div
+          role="progressbar"
+          aria-live="polite"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-label={ariaLabel}
+          aria-valuenow={percent}
+          className={`${prefixClass}-circle-outer`} style={circleStyle}>
           <Circle
             percent={percent}
             strokeWidth={circleWidth}
@@ -96,7 +105,14 @@ export default class Progress extends Component {
     const symbol = (themeProgress && themeProgress.symbol) ||
       this.getSymbolByStatus(progressStatus);
     return (
-      <div className={cx(s[`${prefixClass}`], className)} style={style}>
+      <div
+        role="progressbar"
+        aria-live="polite"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-label={ariaLabel}
+        aria-valuenow={percent}
+        className={cx(s[`${prefixClass}`], className)} style={style}>
         <Line
           prefixClass={prefixClass}
           percent={percent}

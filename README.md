@@ -228,6 +228,7 @@ With `strokeWidth` param you can customize the `path` circle `strokeWidth`.
 | strokeWidth       | set strokeWidth of progress bar type `circle` | number | 6       |
 | className       | set the custom `class` of the react progress bar                         | object | -       |
 | symbolClassName       | set the `symbol` custom `class`                          | object | -       |
+| ariaLabel   | set the [aria-label](https://www.w3.org/TR/wai-aria/#aria-label) text of the react progress bar   | string | A bounded progress bar from 0 to 100 |
 
 Supported Browsers
 ---
